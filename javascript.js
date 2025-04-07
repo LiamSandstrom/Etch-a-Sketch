@@ -24,13 +24,11 @@ initializeColorPickers();
 
 function colorInput(e){
     let input = e.key;
-    console.log(input)
     if(input === "Enter"){
         reSize();
         return;
     }
     if(!isNaN(input) && input > 0 && input < 7){
-        console.log(input);
         let color = colors[input - 1].value;
         setCurrentColor(color);
     }
@@ -39,7 +37,6 @@ function colorInput(e){
 function reSize(){
     if(input.value == "" || isNaN(input.value) || input.value > 64) return;
     let val = input.value;
-    console.log(val)
     clearDivs();
     createDivs(val);
     updateGridText();
@@ -63,14 +60,19 @@ function createDivs(amount){
         square.classList.add("square");
         square.style.width = squareSizePx;
         square.style.height = squareSizePx;
-        square.style.borderRadius ="4px";
 
         let background = document.createElement("div");
         let backgroundSizePx = (squareSize -  2) + "px";
         background.style.width = backgroundSizePx;
         background.style.height = backgroundSizePx;
         background.style.opacity = "0%";
-        background.style.borderRadius ="4px";
+        if(amount < 30){
+            square.style.borderRadius ="4px";
+            background.style.borderRadius ="4px";
+        }
+        else{
+
+        }
 
         square.append(background);
         background.addEventListener("mouseenter", squareHover);
@@ -90,7 +92,6 @@ function squareHover(e){
     if(val >= 1) return;
     val += opacityAmount;
     e.target.style.opacity = val;
-    console.log(e.target.style.opacity);
 }
 
 function randomColor(){
@@ -110,7 +111,6 @@ function initializeColorPickers(){
 }
 
 function setCurrentColor(color){
-    console.log(color);
     if(color === "random"){
         if(currentColor === "random"){
             return;
