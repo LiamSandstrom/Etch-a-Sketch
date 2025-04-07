@@ -4,35 +4,25 @@ const colors = document.querySelectorAll(".color-picker");
 const currentColorUI = document.querySelector("#current-color");
 const gridText = document.querySelector("#size-text");
 const animationTimeStart = 1;
-const containerSize = 600;
+const containerSize = 500;
 const startValue = 16;
 const opacityAmount = 0.2;
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 let squareSize;
 let animationTime = animationTimeStart;
 let currentColor = "black";
 let currentColorInterval;
 
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-window.addEventListener("keypress", colorInput);
-input.addEventListener("change", reSize);
-
-createDivs(startValue);
-input.value = startValue;
-updateGridText();
-initializeColorPickers();
-setCurrentColor("black");
-
-function colorInput(e){
-    let input = e.key;
-    if(input === "Enter"){
-        reSize();
-        return;
-    }
-    if(!isNaN(input) && input > 0 && input < 7){
-        let color = colors[input - 1].value;
-        setCurrentColor(color);
-    }
+beginPlay();
+function beginPlay(){
+    window.addEventListener("keypress", colorInput);
+    input.addEventListener("change", reSize);
+    createDivs(startValue);
+    input.value = startValue;
+    updateGridText();
+    initializeColorPickers();
+    setCurrentColor("black");
 }
 
 function reSize(){
@@ -41,12 +31,6 @@ function reSize(){
     clearDivs();
     createDivs(val);
     updateGridText();
-}
-
-function clearDivs(){
-    while(container.firstChild){
-        container.removeChild(container.firstChild);
-    }
 }
 
 function createDivs(amount){
@@ -77,6 +61,24 @@ function createDivs(amount){
         square.append(background);
         background.addEventListener("mouseenter", squareHover);
         container.append(square);
+    }
+}
+
+function clearDivs(){
+    while(container.firstChild){
+        container.removeChild(container.firstChild);
+    }
+}
+
+function colorInput(e){
+    let input = e.key;
+    if(input === "Enter"){
+        reSize();
+        return;
+    }
+    if(!isNaN(input) && input > 0 && input < 7){
+        let color = colors[input - 1].value;
+        setCurrentColor(color);
     }
 }
 
