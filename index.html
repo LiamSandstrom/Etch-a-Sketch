@@ -8,12 +8,43 @@
     <title>Etch-a-Sketch</title>
 </head>
 <body>
-    <div class="input-wrapper">
-        <input type="text" placeholder="16 = 16x16 max = 50x50" id="input">
-        <div id="div-button">
-            <button>Resize</button>
+    <div>
+        <div class="color-wrapper">
+            <button id="current-color"></button>
+            <div class="color-container">
+                <p>1</p>
+                <button class="color-picker" value="black"></button>
+            </div>
+            <div class="color-container">
+                <p>2</p>
+                <button class="color-picker" value="white"></button>
+            </div>
+            <div class="color-container">
+                <p>3</p>
+                <button class="color-picker" value="red"></button>
+            </div>
+            <div class="color-container">
+                <p>4</p>
+                <button class="color-picker" value="green"></button>
+            </div>
+            <div class="color-container">
+                <p>5</p>
+                <button class="color-picker" value="blue"></button>
+            </div>
+            <div class="color-container">
+                <p>6</p>
+                <button class="color-picker" value="random"></button>
+            </div>
         </div>
     </div>
-    <div class="container"></div>
+    <div class="content-wrapper">
+        <div class="input-wrapper">
+            <input type="text" placeholder="16 = 16x16 max = 50x50" id="input">
+            <div id="div-button">
+                <button class="resize">Resize</button>
+            </div>
+        </div>
+        <div class="container"></div>
+    </div>
 </body>
 </html>

@@ -8,9 +8,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     background-color: #0b253e;
     gap: 10px;
+}
+
+.content-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
@@ -52,7 +58,7 @@ body {
     scale: 0.95;
 }
 
-button{
+.resize{
     font-size: 20px;
     border-radius: 10px;
     width: 90%;
@@ -66,3 +72,46 @@ input {
     background-color: rgb(235, 232, 232);
 }
 
+.color-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.color-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background-color: rgb(151, 145, 145);
+    padding: 5px;
+    border-radius: 20px;
+}
+
+.color-picker, #current-color{
+    width: 27px;
+    height: 27px;
+    border-radius: 15px;
+    border: none;
+    transition: background-color 1s, scale 0.1s;
+}
+
+.color-picker{
+}
+
+.color-picker:hover{
+    scale: 1.1;
+}
+
+#current-color{
+    margin-bottom: 30px;
+}
+
+
+p {
+    margin: 0;
+}
