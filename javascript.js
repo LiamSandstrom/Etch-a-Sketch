@@ -1,20 +1,25 @@
 const container = document.querySelector(".container");
 const input = document.querySelector("#input");
-const button = document.querySelector("#div-button");
 const colors = document.querySelectorAll(".color-picker");
 const currentColorUI = document.querySelector("#current-color");
-const squareSize = 15;
+const gridText = document.querySelector("#size-text");
 const animationTimeStart = 1;
+const containerSize = 600;
+const startValue = 16;
+const opacityAmount = 0.2;
 
+let squareSize;
 let animationTime = animationTimeStart;
 let currentColor = "black";
 let currentColorInterval;
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-button.addEventListener("click", reSize);
 window.addEventListener("keypress", colorInput);
+input.addEventListener("change", reSize);
 
-createDivs(16);
+createDivs(startValue);
+input.value = startValue;
+updateGridText();
 initializeColorPickers();
 
 function colorInput(e){
@@ -31,27 +36,26 @@ function colorInput(e){
     }
 }
 
-async function reSize(){
-    if(input.value == "" || isNaN(input.value) || input.value > 50) return;
+function reSize(){
+    if(input.value == "" || isNaN(input.value) || input.value > 64) return;
     let val = input.value;
     console.log(val)
-    input.value = "";
-    await clearDivs();
-    await delay(200);
+    clearDivs();
     createDivs(val);
+    updateGridText();
 }
 
-async function clearDivs(){
+function clearDivs(){
     while(container.firstChild){
         container.removeChild(container.firstChild);
-        await delay(animationTime);
     }
 }
 
 function createDivs(amount){
-    let containerSize = amount * squareSize;
-    let squareSizePx = squareSize + "px";
+    squareSize = containerSize / amount;
     container.style.width = containerSize + "px";
+    container.style.height = containerSize + "px";
+    let squareSizePx = squareSize + "px";
     let totalSquare = amount * amount;
 
     for(let i = 0; i < totalSquare; i++){
@@ -82,7 +86,7 @@ function squareHover(e){
         e.target.classList.add("painted");
     let val = parseFloat(e.target.style.opacity);
     if(val >= 1) return;
-    val += 0.125;
+    val += opacityAmount;
     e.target.style.opacity = val;
     console.log(e.target.style.opacity);
 }
@@ -106,6 +110,9 @@ function initializeColorPickers(){
 function setCurrentColor(color){
     console.log(color);
     if(color === "random"){
+        if(currentColor === "random"){
+            return;
+        }
         currentColor = "random";
         currentColorInterval = setInterval(() => randomColorTick(currentColorUI), 1000);
         return;
@@ -119,4 +126,9 @@ function setCurrentColor(color){
 
 async function randomColorTick(target){
     target.style.backgroundColor = `rgb(${randomColor()},${randomColor()}, ${randomColor()})`;
+}
+
+function updateGridText(){
+    let val = input.value;
+    gridText.textContent = `${val}x${val}`;
 }
