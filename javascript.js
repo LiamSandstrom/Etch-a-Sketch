@@ -21,6 +21,7 @@ createDivs(startValue);
 input.value = startValue;
 updateGridText();
 initializeColorPickers();
+setCurrentColor("black");
 
 function colorInput(e){
     let input = e.key;
@@ -73,7 +74,6 @@ function createDivs(amount){
         else{
 
         }
-
         square.append(background);
         background.addEventListener("mouseenter", squareHover);
         container.append(square);
