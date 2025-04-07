@@ -5,16 +5,16 @@ const squareSize = 50;
 //     sets container width to divs width * amount
 //     creates the amount of divs 
 //     add divs to container
-createDivs(64);
+createDivs(4);
 
 function createDivs(amount){
     //find sqrt
-    let containerSize = Math.floor(Math.sqrt(amount)) * squareSize;
-    console.log(containerSize);
+    let containerSize = amount * squareSize;
     let squareSizePx = squareSize + "px";
     container.style.width = containerSize + "px";
+    let totalSquare = amount * amount;
 
-    for(let i = 0; i < amount; i++){
+    for(let i = 0; i < totalSquare; i++){
         let square = document.createElement("div");
         let background = document.createElement("div");
         background.style.width = squareSizePx;
