@@ -72,7 +72,16 @@ input {
     background-color: rgb(235, 232, 232);
 }
 
-.color-container{
+.color-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+.color-container, .current-container{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,17 +89,12 @@ input {
     border: 2px solid black;
     padding: 5px;
     border-radius: 10px;
+    background-color: rgb(151, 145, 145);
 }
 
-.color-wrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    background-color: rgb(151, 145, 145);
-    padding: 5px;
-    border-radius: 20px;
+.current-container{
 }
+
 
 .color-picker, #current-color{
     width: 27px;
@@ -106,11 +110,6 @@ input {
 .color-picker:hover{
     scale: 1.1;
 }
-
-#current-color{
-    margin-bottom: 30px;
-}
-
 
 p {
     margin: 0;
