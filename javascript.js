@@ -63,12 +63,14 @@ function createDivs(amount){
         square.classList.add("square");
         square.style.width = squareSizePx;
         square.style.height = squareSizePx;
+        square.style.borderRadius ="4px";
 
         let background = document.createElement("div");
         let backgroundSizePx = (squareSize -  2) + "px";
         background.style.width = backgroundSizePx;
         background.style.height = backgroundSizePx;
         background.style.opacity = "0%";
+        background.style.borderRadius ="4px";
 
         square.append(background);
         background.addEventListener("mouseenter", squareHover);
